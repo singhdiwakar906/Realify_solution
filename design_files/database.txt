@@ -1,0 +1,48 @@
+####### comp_login #######
+
+SQL> create table comp_login(name varchar2(20) not null,email varchar2(50) not null unique,phone_no number(10) not null unique,address varchar2(255) not null,city varchar2(20) not null,zip number(6) not null,username varchar2(20) unique not null,password varchar2(20) not null,id number(10) primary key);
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                      NOT NULL VARCHAR2(20)
+ EMAIL                                     NOT NULL VARCHAR2(50)
+ PHONE_NO                                  NOT NULL NUMBER(10)
+ ADDRESS                                   NOT NULL VARCHAR2(255)
+ CITY                                      NOT NULL VARCHAR2(20)
+ ZIP                                       NOT NULL NUMBER(6)
+ USERNAME                                  NOT NULL VARCHAR2(20)
+ PASSWORD                                  NOT NULL VARCHAR2(20)
+ ID                                        NOT NULL NUMBER(10)
+
+######### user_login ########
+
+SQL> create table user_login(name varchar2(20) not null,email varchar(50) not null unique,phone_no number(10) unique not null,username varchar2(20) unique not null,password varchar(20) not null);
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                      NOT NULL VARCHAR2(20)
+ EMAIL                                     NOT NULL VARCHAR2(50)
+ PHONE_NO                                  NOT NULL NUMBER(10)
+ USERNAME                                  NOT NULL VARCHAR2(20)
+ PASSWORD                                  NOT NULL VARCHAR2(20)
+
+######### product_table #########
+	
+SQL> create table product_table(comp_id references comp_login(id),product_id varchar2(20) not null unique,product_name varchar2(30) not null,brand varchar2(30) not null,catagory varchar2(20) not null,mfd date not null,exp_d  date not null,price number(10) not null);
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COMP_ID                                            NUMBER(10)
+ PRODUCT_ID                                NOT NULL VARCHAR2(20)
+ PRODUCT_NAME                              NOT NULL VARCHAR2(30)
+ BRAND                                     NOT NULL VARCHAR2(30)
+ CATAGORY                                  NOT NULL VARCHAR2(20)
+ MFD                                       NOT NULL DATE
+ EXP_D                                     NOT NULL DATE
+ PRICE                                     NOT NULL NUMBER(10)
+ IS_VALID                                           NUMBER(1)
+
+
+create a sequence command
+
+create sequence id minvalue 1 start with 1 cache 10;
